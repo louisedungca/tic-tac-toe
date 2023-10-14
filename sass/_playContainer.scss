@@ -1,0 +1,53 @@
+.play-container {
+  display: none;
+}
+
+.play-box {
+  // border: 2px solid yellowgreen;
+  width: 100vw;
+  padding: 0.5rem;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+
+  .board-wrapper {
+    // border: 4px dotted pink;
+    padding: 0.5rem;
+    @extend %displayFlex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    .message {
+      padding: 0.5rem;
+      font-size: $fontReg;
+      font-weight: 700;
+      letter-spacing: 0.3rem;
+    }
+  }
+
+  .history-container {
+    // border: 4px dotted blue;
+    padding: 0.5rem;
+    display: none;
+
+    p {
+      font-size: $fontSmall;
+      padding: 0.5rem;
+      background: $mainColor;
+      box-shadow: $insetShadow;
+      border-radius: $moreRad;
+      letter-spacing: 0.12rem;
+      margin-bottom: 0.5rem;
+    }
+  }
+}
+
+@media screen and (width < 780px) {
+  .play-container {
+
+    .play-box {
+      align-items: center;
+      flex-direction: column;
+    }
+  }
+}

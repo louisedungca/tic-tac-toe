@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+// Colors
+$mainColor: #dde1e7;
+$fontColor: #595959;
+$focusColor: #df481a;
+
+// Shadow
+$mainShadow: -3px -3px 7px rgba(255, 255, 255, 0.45),
+            2px 2px 5px rgba(94, 104, 121, 0.3);
+$insetShadow: inset -3px -3px 7px rgba(255, 255, 255, 0.45),
+               inset 2px 2px 5px rgba(94, 104, 121, 0.3);
+
+// Font
+$fontBig: clamp(0.8rem, 0.4571rem + 2.7429vw, 2rem);
+$fontReg: clamp(0.8rem, 0.7194rem + 0.6452vw, 1.3rem);
+$fontSmall: clamp(0.6rem, 0.5677rem + 0.2581vw, 0.8rem);
+
+
+// Display
+%displayFlex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+%display-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+// Border Radius
+$normalRad: 0.5rem;
+$moreRad: 1.5rem;
+$irregRad1: 60% 35% 30% 15% / 70% 35%;
+$irregRad2: 60% 35% 30% 25% / 65% 40% 50%;
+
+// Focus
+%mainFocus {
+  box-shadow: $insetShadow;
+  color: $focusColor;
+  transform: scale(0.9);
+}

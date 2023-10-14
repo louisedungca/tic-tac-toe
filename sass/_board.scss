@@ -1,0 +1,33 @@
+.board {
+  // border: 2px solid rebeccapurple;
+  @extend %display-grid-3;
+  gap: 0.5rem;
+  width: min(85vmin, 350px);
+  aspect-ratio: 1/1;
+
+  .cell {
+    background: $mainColor;
+    box-shadow: $mainShadow;
+    border: none;
+    outline: none;
+    border-radius: $normalRad;
+    font-size: $fontBig;
+    color: $fontColor;
+    font-weight: 900;
+    cursor: pointer;
+
+    &:focus {
+      @extend %mainFocus;
+    }
+  }
+
+  .winning-cell {
+    color: $focusColor;
+    box-shadow: $insetShadow;
+  }
+
+  #clicked {
+    pointer-events: none;
+  }
+}
+

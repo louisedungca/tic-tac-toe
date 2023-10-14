@@ -1,0 +1,40 @@
+.afterboard-wrapper {
+  // border: 1px solid red;
+  width: 100%;
+  height: auto;
+  padding: 0.5rem;
+  @extend %display-grid-3;
+  grid-template-rows: repeat(2, 1fr);
+  gap: 1rem;
+
+  .reset-button {
+    grid-area: 1 / 1 / span 2 / span 3;
+  }
+
+  button {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background: $mainColor;
+    box-shadow: $mainShadow;
+    border-radius: $irregRad2;
+    width: 100%;
+    height: 2rem;
+    font-size: $fontSmall;
+    color: $fontColor;
+    @extend %displayFlex;
+
+    &:hover {
+      @extend %mainFocus;
+    }
+  }
+
+  .history-button, .previous-button, .next-button {
+    display: none;
+  }
+
+  #disable-btn {
+    pointer-events: none;
+    color: #80808060;
+  }
+}

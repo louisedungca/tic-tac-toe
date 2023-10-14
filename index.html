@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale = 1.0">
+  <title>Project - TicTacToe</title>
+  <link href="/css/input.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+  <!-- JS Section -->
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <h1>Tic Tac Toe</h1> 
+
+  <section class="player-select-container">
+    <div class="player-select">
+      <h3>Choose Player One</h3>
+      <div class="player-buttons">
+          <input type="button" class="player-button" value="X">
+          <input type="button" class="player-button" value="O">
+      </div>
+    </div>
+  </section>
+
+  <section class="play-container">
+    <div class="play-box">
+      <div class="board-wrapper">
+        <div id="board" class="board">
+          <!-- Created via JS -->
+        </div>
+  
+        <p class="message"></p>
+    
+        <div class="afterboard-wrapper">
+          <!-- Reset Button -->
+          <button class="reset-button" value="Reset">
+            <i class="fas fa-undo"></i>
+          </button>
+          <!-- History Button -->
+          <button class="history-button" value="History">
+            <i class="fas fa-history"></i>
+          </button>
+          <!-- Prev Button -->
+          <button class="previous-button" value="Previous">
+            <i class="fas fa-step-backward"></i>
+          </button>
+          <!-- Next Button -->
+          <button class="next-button" value="Next">
+            <i class="fas fa-step-forward"></i>
+          </button>
+        </div>
+      </div>
+    
+      <div class="history-container"></div>
+    </div>
+  </section>
+
+</body>
+</html>
