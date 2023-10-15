@@ -1,7 +1,7 @@
 .player-select {
   width: min(85vw, 450px);
   height: auto;
-  padding: 1.8rem 2.5rem;
+  padding: 2rem 2.5rem 1.8rem;
   background: $mainColor;
   box-shadow: $mainShadow;
   border-radius: $irregRad1;
@@ -12,9 +12,15 @@
 
 h3 {
   // border: 1px solid red;
-  font-size: $fontReg;
-  font-weight: 100;
+  font-size: $fontSmall;
+  font-weight: 900;
+  text-transform: uppercase;
   text-align: center;
+  letter-spacing: 0.3rem;
+
+  span {
+    animation: $flickerAnimation;
+  }
 }
 
 .player-buttons {
@@ -27,12 +33,14 @@ h3 {
     cursor: pointer;
     min-width: 1.8rem;
     width: 3.5rem;
+    font-family: $fontFamH1;
     font-size: $fontBig;
     font-weight: 900;
     color: $fontColor;
     border: none;
     outline: none;
-    padding: 0.5rem;
+    border-radius: $normalRad;
+    padding: 1rem;
     background: $mainColor;
     box-shadow: $mainShadow;
 
@@ -41,3 +49,8 @@ h3 {
     }
   }
 }
+
+.player-buttons input[type="button"] {
+  animation: $flickerAnimation;
+}
+

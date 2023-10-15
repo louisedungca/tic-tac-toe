@@ -4,7 +4,7 @@
 
 .play-box {
   // border: 2px solid yellowgreen;
-  width: 100vw;
+  width: 100%;
   padding: 0.5rem;
   display: flex;
   justify-content: center;
@@ -18,10 +18,13 @@
     gap: 0.5rem;
 
     .message {
-      padding: 0.5rem;
-      font-size: $fontReg;
-      font-weight: 700;
-      letter-spacing: 0.3rem;
+      padding: 1rem 0.5rem 0.5rem 1.5rem;
+      font-family: $fontFamH1;
+      font-size: $fontBig;
+      font-weight: 500;
+      letter-spacing: 0.5rem;
+      text-align: center;
+      animation: $flickerAnimation;
     }
   }
 
@@ -32,14 +35,17 @@
 
     &::before {
       content: "History";
+      font-family: $fontFamMain;
       font-weight: 700;
       font-size: $fontReg;
       letter-spacing: 0.5rem;
       text-transform: uppercase;
       padding-left: 0.5rem;
+      animation: $flickerAnimation;
     }
 
     p {
+      font-family: $fontFamMain;
       font-size: $fontSmall;
       padding: 0.5rem 1rem;
       background: $mainColor;
@@ -57,10 +63,10 @@
 
 @media screen and (width < 780px) {
   .play-container {
-
     .play-box {
       align-items: center;
       flex-direction: column;
+      gap: 0.5rem;
     }
   }
 }

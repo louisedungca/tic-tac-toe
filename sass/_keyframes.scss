@@ -1,0 +1,12 @@
+@keyframes textflicker {
+  from {
+    text-shadow: 
+      1px 0 0 $flickerColorPink,
+      -2px 0 0 $flickerColorGreen;
+  }
+  to {
+    text-shadow:
+      2px 0.5px 2px $flickerColorPink,
+      -1px -0.5px 2px $flickerColorGreen;
+  }
+}

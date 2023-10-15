@@ -21,7 +21,7 @@ const boardState = [
 
 const winningMoves = [
   [[0, 0], [0, 1], [0, 2]], // First row win
-  [[1, 0], [1, 1], [1, 2]], // Second wrong
+  [[1, 0], [1, 1], [1, 2]], // Second row
   [[2, 0], [2, 1], [2, 2]], // Third row
 
   [[0, 0], [1, 0], [2, 0]], // First col win
@@ -130,7 +130,7 @@ function checkWin() {
 
     gameActive = false;
     gameOver = true;
-    message.textContent = `${winner} has won!`;
+    message.textContent = `${winner} wins!`;
     mainText.innerText = "Tic Tac Toe";
     showButtons();
   }
@@ -162,7 +162,7 @@ function showHistory() {
 
   moves.forEach((move, index) => {
     const moveText = document.createElement("p");
-    moveText.textContent = `${index + 1}: ${describeMove(move)}`;
+    moveText.innerHTML = `${index + 1}: ${describeMove(move)}`;
     historyContainer.appendChild(moveText);
 
     // console.log(`(History Log) ${index + 1}: ${describeMove(move)}`);
@@ -184,18 +184,18 @@ function prevMove() {
       cell.classList.remove("winning-cell");
     });
     currentMove--;
-    updateBoardState();
+    updateBoard();
   }
 };
 
 function nextMove() {
   if (gameOver && currentMove < moves.length - 1) {
     currentMove++;
-    updateBoardState();
+    updateBoard();
   }
 };
 
-function updateBoardState() {
+function updateBoard() {
   cells.forEach(cell => cell.value = "");
 
   for (i = 0; i <= currentMove; i++) {

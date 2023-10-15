@@ -4,7 +4,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
+  font-family: $fontFamMain;;
 }
 
 body {
@@ -18,7 +18,7 @@ body {
   gap: 1rem;
   color: $fontColor;
   padding: 2rem;
-  // border: 4px solid pink;
+  overflow: auto;
 }
 
 h1 {
@@ -26,14 +26,37 @@ h1 {
   text-transform: uppercase;
   text-align: center;
   letter-spacing: 0.5rem;
+  font-family: $fontFamH1;
   font-size: $fontBig;
+  font-weight: 600;
   background: $mainColor;
   box-shadow: $insetShadow;
   border-radius: $moreRad;
   margin-bottom: 2rem;
+  animation: $flickerAnimation;
 }
+
+::-webkit-scrollbar {
+  width: 5px; }
+
+::-webkit-scrollbar-track {
+  background: $mainColor; 
+}
+
+::-webkit-scrollbar-thumb {
+  background: $fontColor; 
+  border-radius: $normalRad;
+  
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: $focusColor; 
+  box-shadow: $insetShadow;
+}
+
 
 @import "playerSelect",
 "playContainer",
 "board",
-"afterboard";
+"afterboard",
+"keyframes";

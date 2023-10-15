@@ -6,9 +6,11 @@
   @extend %display-grid-3;
   grid-template-rows: repeat(2, 1fr);
   gap: 1rem;
-
+  
   .reset-button {
     grid-area: 1 / 1 / span 2 / span 3;
+    animation: $flickerAnimation;
+
   }
 
   button {
@@ -23,6 +25,7 @@
     font-size: $fontSmall;
     color: $fontColor;
     @extend %displayFlex;
+    animation: $flickerAnimation;
 
     &:hover {
       @extend %mainFocus;
@@ -36,5 +39,6 @@
   #disable-btn {
     pointer-events: none;
     color: #80808060;
+    animation: none;
   }
 }

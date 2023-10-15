@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins&family=Press+Start+2P&family=Tilt+Neon&family=VT323&display=swap");
 .afterboard-wrapper button, .play-box .board-wrapper, .player-buttons, .player-select, body {
   display: flex;
   justify-content: center;
@@ -11,16 +11,17 @@
 }
 
 .afterboard-wrapper button:hover, .board .cell:focus, .player-buttons input[type=button]:focus {
-  box-shadow: inset -3px -3px 7px rgba(255, 255, 255, 0.45), inset 2px 2px 5px rgba(94, 104, 121, 0.3);
+  box-shadow: inset -3px -3px 7px rgba(255, 255, 255, 0.45), inset 2px 2px 6px rgba(94, 104, 121, 0.3);
   color: #df481a;
   transform: scale(0.9);
+  animation: none;
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
+  font-family: "Tilt Neon", sans-serif;
 }
 
 body {
@@ -33,6 +34,7 @@ body {
   gap: 1rem;
   color: #595959;
   padding: 2rem;
+  overflow: auto;
 }
 
 h1 {
@@ -40,28 +42,54 @@ h1 {
   text-transform: uppercase;
   text-align: center;
   letter-spacing: 0.5rem;
+  font-family: "VT323", sans-serif;
   font-size: clamp(0.8rem, 0.4571rem + 2.7429vw, 2rem);
+  font-weight: 600;
   background: #dde1e7;
-  box-shadow: inset -3px -3px 7px rgba(255, 255, 255, 0.45), inset 2px 2px 5px rgba(94, 104, 121, 0.3);
+  box-shadow: inset -3px -3px 7px rgba(255, 255, 255, 0.45), inset 2px 2px 6px rgba(94, 104, 121, 0.3);
   border-radius: 1.5rem;
   margin-bottom: 2rem;
+  animation: textflicker 0.01s ease infinite alternate;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #dde1e7;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #595959;
+  border-radius: 0.5rem;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #df481a;
+  box-shadow: inset -3px -3px 7px rgba(255, 255, 255, 0.45), inset 2px 2px 6px rgba(94, 104, 121, 0.3);
 }
 
 .player-select {
   width: min(85vw, 450px);
   height: auto;
-  padding: 1.8rem 2.5rem;
+  padding: 2rem 2.5rem 1.8rem;
   background: #dde1e7;
-  box-shadow: -3px -3px 7px rgba(255, 255, 255, 0.45), 2px 2px 5px rgba(94, 104, 121, 0.3);
+  box-shadow: -3px -3px 8px rgba(255, 255, 255, 0.45), 2px 2px 6px rgba(94, 104, 121, 0.3);
   border-radius: 60% 35% 30% 15%/70% 35%;
   flex-direction: column;
   gap: 1rem;
 }
 
 h3 {
-  font-size: clamp(0.8rem, 0.7194rem + 0.6452vw, 1.3rem);
-  font-weight: 100;
+  font-size: clamp(0.6rem, 0.5677rem + 0.2581vw, 0.8rem);
+  font-weight: 900;
+  text-transform: uppercase;
   text-align: center;
+  letter-spacing: 0.3rem;
+}
+h3 span {
+  animation: textflicker 0.01s ease infinite alternate;
 }
 
 .player-buttons {
@@ -73,21 +101,27 @@ h3 {
   cursor: pointer;
   min-width: 1.8rem;
   width: 3.5rem;
+  font-family: "VT323", sans-serif;
   font-size: clamp(0.8rem, 0.4571rem + 2.7429vw, 2rem);
   font-weight: 900;
   color: #595959;
   border: none;
   outline: none;
-  padding: 0.5rem;
+  border-radius: 0.5rem;
+  padding: 1rem;
   background: #dde1e7;
-  box-shadow: -3px -3px 7px rgba(255, 255, 255, 0.45), 2px 2px 5px rgba(94, 104, 121, 0.3);
+  box-shadow: -3px -3px 8px rgba(255, 255, 255, 0.45), 2px 2px 6px rgba(94, 104, 121, 0.3);
 }
+.player-buttons input[type=button] {
+  animation: textflicker 0.01s ease infinite alternate;
+}
+
 .play-container {
   display: none;
 }
 
 .play-box {
-  width: 100vw;
+  width: 100%;
   padding: 0.5rem;
   display: flex;
   justify-content: center;
@@ -99,10 +133,13 @@ h3 {
   gap: 0.5rem;
 }
 .play-box .board-wrapper .message {
-  padding: 0.5rem;
-  font-size: clamp(0.8rem, 0.7194rem + 0.6452vw, 1.3rem);
-  font-weight: 700;
-  letter-spacing: 0.3rem;
+  padding: 1rem 0.5rem 0.5rem 1.5rem;
+  font-family: "VT323", sans-serif;
+  font-size: clamp(0.8rem, 0.4571rem + 2.7429vw, 2rem);
+  font-weight: 500;
+  letter-spacing: 0.5rem;
+  text-align: center;
+  animation: textflicker 0.01s ease infinite alternate;
 }
 .play-box .history-container {
   padding: 1rem;
@@ -110,17 +147,20 @@ h3 {
 }
 .play-box .history-container::before {
   content: "History";
+  font-family: "Tilt Neon", sans-serif;
   font-weight: 700;
   font-size: clamp(0.8rem, 0.7194rem + 0.6452vw, 1.3rem);
   letter-spacing: 0.5rem;
   text-transform: uppercase;
   padding-left: 0.5rem;
+  animation: textflicker 0.01s ease infinite alternate;
 }
 .play-box .history-container p {
+  font-family: "Tilt Neon", sans-serif;
   font-size: clamp(0.6rem, 0.5677rem + 0.2581vw, 0.8rem);
   padding: 0.5rem 1rem;
   background: #dde1e7;
-  box-shadow: inset -3px -3px 7px rgba(255, 255, 255, 0.45), inset 2px 2px 5px rgba(94, 104, 121, 0.3);
+  box-shadow: inset -3px -3px 7px rgba(255, 255, 255, 0.45), inset 2px 2px 6px rgba(94, 104, 121, 0.3);
   border-radius: 1.5rem;
   letter-spacing: 0.12rem;
   margin-top: 0.5rem;
@@ -133,6 +173,7 @@ h3 {
   .play-container .play-box {
     align-items: center;
     flex-direction: column;
+    gap: 0.5rem;
   }
 }
 .board {
@@ -142,18 +183,21 @@ h3 {
 }
 .board .cell {
   background: #dde1e7;
-  box-shadow: -3px -3px 7px rgba(255, 255, 255, 0.45), 2px 2px 5px rgba(94, 104, 121, 0.3);
+  box-shadow: -3px -3px 8px rgba(255, 255, 255, 0.45), 2px 2px 6px rgba(94, 104, 121, 0.3);
   border: none;
   outline: none;
   border-radius: 0.5rem;
+  font-family: "Press Start 2P", sans-serif;
   font-size: clamp(0.8rem, 0.4571rem + 2.7429vw, 2rem);
   color: #595959;
   font-weight: 900;
   cursor: pointer;
+  animation: textflicker 0.01s ease infinite alternate;
 }
 .board .winning-cell {
   color: #df481a;
-  box-shadow: inset -3px -3px 7px rgba(255, 255, 255, 0.45), inset 2px 2px 5px rgba(94, 104, 121, 0.3);
+  box-shadow: inset -3px -3px 7px rgba(255, 255, 255, 0.45), inset 2px 2px 6px rgba(94, 104, 121, 0.3);
+  animation: none;
 }
 .board #disable-cell {
   pointer-events: none;
@@ -168,18 +212,20 @@ h3 {
 }
 .afterboard-wrapper .reset-button {
   grid-area: 1/1/span 2/span 3;
+  animation: textflicker 0.01s ease infinite alternate;
 }
 .afterboard-wrapper button {
   cursor: pointer;
   border: none;
   outline: none;
   background: #dde1e7;
-  box-shadow: -3px -3px 7px rgba(255, 255, 255, 0.45), 2px 2px 5px rgba(94, 104, 121, 0.3);
+  box-shadow: -3px -3px 8px rgba(255, 255, 255, 0.45), 2px 2px 6px rgba(94, 104, 121, 0.3);
   border-radius: 60% 35% 30% 25%/65% 40% 50%;
   width: 100%;
   height: 2rem;
   font-size: clamp(0.6rem, 0.5677rem + 0.2581vw, 0.8rem);
   color: #595959;
+  animation: textflicker 0.01s ease infinite alternate;
 }
 .afterboard-wrapper .history-button, .afterboard-wrapper .previous-button, .afterboard-wrapper .next-button {
   display: none;
@@ -187,4 +233,14 @@ h3 {
 .afterboard-wrapper #disable-btn {
   pointer-events: none;
   color: rgba(128, 128, 128, 0.3764705882);
+  animation: none;
+}
+
+@keyframes textflicker {
+  from {
+    text-shadow: 1px 0 0 #df27a1, -2px 0 0 #75fa69;
+  }
+  to {
+    text-shadow: 2px 0.5px 2px #df27a1, -1px -0.5px 2px #75fa69;
+  }
 }

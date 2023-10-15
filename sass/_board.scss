@@ -11,10 +11,12 @@
     border: none;
     outline: none;
     border-radius: $normalRad;
+    font-family: $fontFamSymbol;
     font-size: $fontBig;
     color: $fontColor;
     font-weight: 900;
     cursor: pointer;
+    animation: $flickerAnimation;
 
     &:focus {
       @extend %mainFocus;
@@ -24,6 +26,7 @@
   .winning-cell {
     color: $focusColor;
     box-shadow: $insetShadow;
+    animation: none; 
   }
 
   #disable-cell {
