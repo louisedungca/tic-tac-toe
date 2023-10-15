@@ -21,7 +21,7 @@ const boardState = [
 
 const winningMoves = [
   [[0, 0], [0, 1], [0, 2]], // First row win
-  [[1, 0], [1, 1], [1, 2]], // Second wrong
+  [[1, 0], [1, 1], [1, 2]], // Second row
   [[2, 0], [2, 1], [2, 2]], // Third row
 
   [[0, 0], [1, 0], [2, 0]], // First col win
