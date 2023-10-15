@@ -1,46 +1,43 @@
-.player-select-container {
-  // display: none;
+.player-select {
+  width: min(85vw, 450px);
+  height: auto;
+  padding: 1.8rem 2.5rem;
+  background: $mainColor;
+  box-shadow: $mainShadow;
+  border-radius: $irregRad1;
+  @extend %displayFlex;
+  flex-direction: column;
+  gap: 1rem;
+}
 
-  .player-select {
-    width: min(85vw, 450px);
-    height: auto;
-    padding: 1.8rem 2.5rem;
+h3 {
+  // border: 1px solid red;
+  font-size: $fontReg;
+  font-weight: 100;
+  text-align: center;
+}
+
+.player-buttons {
+  @extend %displayFlex;
+  gap: 0.5rem;
+  width: 100%;
+  height: auto;
+
+  input[type="button"] {
+    cursor: pointer;
+    min-width: 1.8rem;
+    width: 3.5rem;
+    font-size: $fontBig;
+    font-weight: 900;
+    color: $fontColor;
+    border: none;
+    outline: none;
+    padding: 0.5rem;
     background: $mainColor;
     box-shadow: $mainShadow;
-    border-radius: $irregRad1;
-    @extend %displayFlex;
-    flex-direction: column;
-  }
 
-  h3 {
-    border: 1pz solid red;
-    font-size: $fontReg;
-    font-weight: 100;
-    text-align: center;
-  }
-
-  .player-buttons {
-    @extend %displayFlex;
-    gap: 0.5rem;
-    width: 100%;
-    height: auto;
-
-    input[type="button"] {
-      cursor: pointer;
-      min-width: 1.8rem;
-      width: 3.5rem;
-      font-size: $fontBig;
-      font-weight: 900;
-      color: $fontColor;
-      border: none;
-      outline: none;
-      padding: 0.5rem;
-      background: $mainColor;
-      box-shadow: $mainShadow;
-
-      &:focus {
-        @extend %mainFocus;
-      }
+    &:focus {
+      @extend %mainFocus;
     }
   }
 }

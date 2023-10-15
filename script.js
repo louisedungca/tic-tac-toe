@@ -15,13 +15,13 @@ const moves = [];
 
 const boardState = [
   ["", "", ""],
-  ["", "", ""], 
+  ["", "", ""],
   ["", "", ""]
 ];
 
 const winningMoves = [
   [[0, 0], [0, 1], [0, 2]], // First row win
-  [[1, 0], [1, 1], [1, 2]], // Second row
+  [[1, 0], [1, 1], [1, 2]], // Second wrong
   [[2, 0], [2, 1], [2, 2]], // Third row
 
   [[0, 0], [1, 0], [2, 0]], // First col win
@@ -45,8 +45,8 @@ let gameOver = false;
 
 // Board creation
 function createBoard() {
-  for(row = 0; row < 3; row++) {
-    for(col = 0; col < 3; col++) {
+  for (row = 0; row < 3; row++) {
+    for (col = 0; col < 3; col++) {
       const cell = document.createElement("input");
       // <input type="button" class="cell" data-row="0">
       cell.type = "button";
@@ -64,7 +64,7 @@ function createBoard() {
 // Selection of players
 playerButton.forEach(button => {
   button.addEventListener("click", () => {
-      selectPlayer(button.value); 
+    selectPlayer(button.value);
   });
 });
 
@@ -75,7 +75,7 @@ function selectPlayer(player) {
   mainText.innerText = "Let's play!";
   gameActive = true;
 
-  console.log(`Player 1: "${currentPlayer}"`);
+  // console.log(`Player 1: "${currentPlayer}"`);
 };
 
 // Clicking each cell
@@ -87,18 +87,18 @@ function clickedCell(event) {
   if (boardState[row][col] !== "") return;
 
   event.target.value = currentPlayer;
-  event.target.id = "clicked"; // @css pointer-events: none;
+  event.target.id = "disable-cell"; // @css pointer-events: none;
   boardState[row][col] = currentPlayer;
-  
-  moves.push({ symbol: currentPlayer, row, col});
+
+  moves.push({ symbol: currentPlayer, row, col });
   currentMove = moves.length - 1; // index of moves array
 
   checkWin();
   currentPlayer = currentPlayer === "X" ? "O" : "X";
   updatePrevNextBtns();
 
-  console.log("Board State:", boardState);
-  console.log("Moves:", moves);
+  // console.log("Board State:", boardState);
+  // console.log("Moves:", moves);
 };
 
 function checkWin() {
@@ -114,8 +114,8 @@ function checkWin() {
       boardState[rowA][colA] === boardState[rowC][colC]
     );
   });
-  
-  console.log("Winning Pattern:", winningPattern);
+
+  // console.log("Winning Pattern:", winningPattern);
 
   if (winningPattern) {
     const [a, b, c] = winningPattern;
@@ -132,7 +132,7 @@ function checkWin() {
     gameOver = true;
     message.textContent = `${winner} has won!`;
     mainText.innerText = "Tic Tac Toe";
-    showHistory();
+    showButtons();
   }
 
   else if (moves.length === 9 && !gameOver) {
@@ -140,14 +140,25 @@ function checkWin() {
     gameOver = true;
     message.textContent = "It's a draw!";
     mainText.innerText = "Tic Tac Toe";
-    showHistory();
+    showButtons();
   }
 
-  console.log("Last Player:", currentPlayer);
+  // console.log("Last Player:", currentPlayer);
 }
 
+function showButtons() {
+  historyButton.style.display = "flex";
+  previousButton.style.display = "flex";
+  nextButton.style.display = "flex";
+  
+  cells.forEach(cell => {
+    cell.id = "disable-cell";
+  });
+};  
+
 function showHistory() {
-  historyContainer.innerHTML = ""; 
+  historyContainer.classList.toggle("active");
+  historyContainer.innerHTML = "";
 
   moves.forEach((move, index) => {
     const moveText = document.createElement("p");
@@ -156,32 +167,22 @@ function showHistory() {
 
     // console.log(`(History Log) ${index + 1}: ${describeMove(move)}`);
   });
-
-  // Display history button and container
-  historyButton.style.display = "block";
-  previousButton.style.display = "block";
-  nextButton.style.display = "block";
-
-  if (historyContainer.style.display === "none") {
-    historyContainer.style.display = "block";
-  } 
-  
-  else {
-    historyContainer.style.display = "none";
-  }
 }
 
 function describeMove(move) {
   // ref: moves.push({ symbol: currentPlayer, row, col});
   const symbol = move.symbol;
   const cellMove = describeCell[move.row][move.col];
-  
-  return `An "${symbol}" is placed in the ${cellMove}.`;
+
+  return `"${symbol}" was placed in the ${cellMove}.`;
 };
 
 // Previous and next move feature
 function prevMove() {
   if (gameOver && currentMove > 0) {
+    cells.forEach(cell => {
+      cell.classList.remove("winning-cell");
+    });
     currentMove--;
     updateBoardState();
   }
@@ -197,10 +198,10 @@ function nextMove() {
 function updateBoardState() {
   cells.forEach(cell => cell.value = "");
 
-  for(i = 0; i <= currentMove; i++) {
+  for (i = 0; i <= currentMove; i++) {
     const move = moves[i];
     // ref: Moves[0]: { symbol: currentPlayer, row, col}
-    const { symbol, row, col } = move; 
+    const { symbol, row, col } = move;
     cells[row * 3 + col].value = symbol;
   }
 
@@ -208,7 +209,7 @@ function updateBoardState() {
 };
 
 function updatePrevNextBtns() {
-  if(currentMove <= 0) {
+  if (currentMove <= 0) {
     previousButton.id = "disable-btn";
   }
 
@@ -216,10 +217,11 @@ function updatePrevNextBtns() {
     previousButton.id = "";
   }
 
-  if(currentMove >= moves.length - 1) {
+  if (currentMove >= moves.length - 1) {
     nextButton.id = "disable-btn";
+    checkWin();
   }
-  
+
   else {
     nextButton.id = "";
   }
@@ -238,20 +240,21 @@ function resetGame() {
   moves.length = 0;
   gameActive = false;
   gameOver = false;
-  
+
   message.textContent = "";
+  historyContainer.innerHTML = "";
   mainText.innerText = "Tic Tac Toe";
-  playerSelect.style.display = "block";
+  playerSelect.style.display = "flex";
   playContainer.style.display = "none";
   historyButton.style.display = "none";
-  historyContainer.style.display = "none";
-  previousButton.style.display = "none";
+  previousButton.style.display = "none";  
   nextButton.style.display = "none";
+  historyContainer.classList.remove("active");
 
   // @console
-  console.log("Cells (reset):", cells);
-  console.log("Moves (reset):", moves);
-  console.log("Board State (reset):", boardState);
+  // console.log("Cells (reset):", cells);
+  // console.log("Moves (reset):", moves);
+  // console.log("Board State (reset):", boardState);
 };
 
 
@@ -263,6 +266,6 @@ resetButton.addEventListener("click", resetGame);
 
 
 // @console 
-console.log("Cells:", cells);
-console.log("Board State (initial):", boardState);
-console.log("Moves (initial):", moves);
+// console.log("Cells:", cells);
+// console.log("Board State (initial):", boardState);
+// console.log("Moves (initial):", moves);
