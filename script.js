@@ -2,7 +2,7 @@ const board = document.querySelector("#board");
 const mainText = document.querySelector("h1");
 const message = document.querySelector(".message");
 const playerSelect = document.querySelector(".player-select");
-const playerButton = document.querySelectorAll(".player-button");
+const playerButtons = document.querySelectorAll(".player-button");
 const historyButton = document.querySelector(".history-button");
 const previousButton = document.querySelector(".previous-button");
 const nextButton = document.querySelector(".next-button");
@@ -48,7 +48,7 @@ function createBoard() {
   for (row = 0; row < 3; row++) {
     for (col = 0; col < 3; col++) {
       const cell = document.createElement("input");
-      // <input type="button" class="cell" data-row="0">
+      // <input type="button" class="cell" data-row="0" data-col="0">
       cell.type = "button";
       cell.className = "cell";
       cell.dataset.row = row;
@@ -62,16 +62,16 @@ function createBoard() {
 };
 
 // Selection of players
-playerButton.forEach(button => {
+playerButtons.forEach((button, index) => {
   button.addEventListener("click", () => {
-    selectPlayer(button.value);
+    selectPlayer(index === 0 ? "X" : "O");
   });
 });
 
 function selectPlayer(player) {
   currentPlayer = player;
   playerSelect.style.display = "none";
-  playContainer.style.display = "block";
+  playContainer.style.display = "flex";
   mainText.innerText = "Let's play!";
   gameActive = true;
 
@@ -87,7 +87,7 @@ function clickedCell(event) {
   if (boardState[row][col] !== "") return;
 
   event.target.value = currentPlayer;
-  event.target.id = "disable-cell"; // @css pointer-events: none;
+  event.target.id = "disable-cell";
   boardState[row][col] = currentPlayer;
 
   moves.push({ symbol: currentPlayer, row, col });
@@ -101,6 +101,7 @@ function clickedCell(event) {
   // console.log("Moves:", moves);
 };
 
+// Check winner
 function checkWin() {
   const winningPattern = winningMoves.find(pattern => {
     const [a, b, c] = pattern;
@@ -150,12 +151,13 @@ function showButtons() {
   historyButton.style.display = "flex";
   previousButton.style.display = "flex";
   nextButton.style.display = "flex";
-  
+
   cells.forEach(cell => {
     cell.id = "disable-cell";
   });
-};  
+};
 
+// History
 function showHistory() {
   historyContainer.classList.toggle("active");
   historyContainer.innerHTML = "";
@@ -170,14 +172,14 @@ function showHistory() {
 }
 
 function describeMove(move) {
-  // ref: moves.push({ symbol: currentPlayer, row, col});
+  // ref: Moves[0]: { symbol: currentPlayer, row, col}
   const symbol = move.symbol;
   const cellMove = describeCell[move.row][move.col];
 
   return `"${symbol}" was placed in the ${cellMove}.`;
 };
 
-// Previous and next move feature
+// Previous and next move 
 function prevMove() {
   if (gameOver && currentMove > 0) {
     cells.forEach(cell => {
@@ -227,6 +229,7 @@ function updatePrevNextBtns() {
   }
 }
 
+// Reset
 function resetGame() {
   boardState.forEach(row => row.fill(""));
   cells.forEach(cell => {
@@ -247,7 +250,7 @@ function resetGame() {
   playerSelect.style.display = "flex";
   playContainer.style.display = "none";
   historyButton.style.display = "none";
-  previousButton.style.display = "none";  
+  previousButton.style.display = "none";
   nextButton.style.display = "none";
   historyContainer.classList.remove("active");
 
@@ -257,13 +260,11 @@ function resetGame() {
   // console.log("Board State (reset):", boardState);
 };
 
-
 createBoard();
 historyButton.addEventListener("click", showHistory);
 previousButton.addEventListener("click", prevMove);
 nextButton.addEventListener("click", nextMove);
 resetButton.addEventListener("click", resetGame);
-
 
 // @console 
 // console.log("Cells:", cells);
